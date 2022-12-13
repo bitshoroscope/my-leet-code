@@ -1,0 +1,15 @@
+Importing and Exporting
+Entities can be imported and exported from Cloud Firestore. Exports contain entities but
+not indexes. Those are rebuilt during import. Exporting requires a Cloud Storage bucket
+to store the exported data. You can specify a filter when exporting so that only a subset of
+entity kinds are exported.
+Exported entities can be imported into BigQuery using the bq command, but only if
+an entity filter was used when creating the export. There are a number of restrictions on
+importing Cloud Firestore exports to BigQuery:
+■■ The Cloud Storage URI of the export file must not have a wildcard.
+■■ Data cannot be appended to an existing table with a defined schema.
+■■ Entities in the export have a consistent schema.
+■■ Any property value greater than 64 KB is truncated to 64 KB on export.
+Cloud Firestore in Datastore Mode is a managed document database that is well suited
+for applications that require semi-structured data but that do not require low-latency writes
+(< 10 ms). When low-latency writes are needed, Bigtable is a better option.
